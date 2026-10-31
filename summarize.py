@@ -72,6 +72,12 @@ model = ChatAnthropic(model="claude-sonnet-4-6")
 
 # "stuff" = put all chunks together into one prompt and summarize in a
 # single call. verbose=True prints the prompt(s) the chain actually sends.
+#
+# For texts too long to fit in one prompt, load_summarize_chain also
+# accepts chain_type="map_reduce" as a drop-in replacement here: it
+# summarizes each chunk separately, then combines those summaries into
+# one. See summarize_map_reduce.py for that same strategy built by hand
+# with LCEL instead of this one-line helper.
 chain_summarize = load_summarize_chain(model, chain_type="stuff", verbose=True)
 result = chain_summarize.invoke({"input_documents": docs})
 print(result["output_text"])

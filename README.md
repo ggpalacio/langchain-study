@@ -32,8 +32,8 @@ Each script is runnable on its own (`python <file>.py`) and focuses on a single 
 | [chain_decorator.py](chain_decorator.py) | `@chain`: turning a function into a `Runnable` | [chain decorator](https://reference.langchain.com/python/langchain-core/runnables/base/chain) |
 | [runnable_lambda.py](runnable_lambda.py) | `RunnableLambda`: wrapping an existing function | [RunnableLambda](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableLambda) |
 | [output_parsers.py](output_parsers.py) | `StrOutputParser` + a multi-step translate-then-summarize pipeline | [StrOutputParser](https://reference.langchain.com/python/langchain-core/output_parsers/StrOutputParser) |
-| [summarize_stuff.py](summarize_stuff.py) | Summarization, `"stuff"` strategy: all chunks in one prompt | [Summarization chains](https://reference.langchain.com/python/integrations/langchain_classic/chains/summarize) |
-| [summarize_map_reduce.py](summarize_map_reduce.py) | Summarization, `"map_reduce"` strategy: summarize chunks, then combine | [Text splitters](https://docs.langchain.com/oss/python/integrations/splitters/index) |
+| [summarize.py](summarize.py) | Summarization, `"stuff"` strategy: all chunks in one prompt (also notes the `"map_reduce"` option) | [Summarization chains](https://reference.langchain.com/python/integrations/langchain_classic/chains/summarize) |
+| [summarize_map_reduce.py](summarize_map_reduce.py) | `"map_reduce"` strategy built by hand with LCEL: summarize chunks, then combine | [Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) |
 
 ## Reference
 
