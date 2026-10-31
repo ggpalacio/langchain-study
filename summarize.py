@@ -78,6 +78,12 @@ model = ChatAnthropic(model="claude-sonnet-4-6")
 # summarizes each chunk separately, then combines those summaries into
 # one. See summarize_map_reduce.py for that same strategy built by hand
 # with LCEL instead of this one-line helper.
+#
+# load_summarize_chain also accepts a `prompt` kwarg (a PromptTemplate
+# with a "text" variable, matching document_variable_name) to replace
+# its default summarization instructions - e.g.
+# prompt=PromptTemplate.from_template("Summarize in Portuguese:\n{text}")
+# - without having to touch any other part of the chain.
 chain_summarize = load_summarize_chain(model, chain_type="stuff", verbose=True)
 result = chain_summarize.invoke({"input_documents": docs})
 print(result["output_text"])
