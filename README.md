@@ -34,6 +34,7 @@ Each script is runnable on its own (`python <file>.py`) and focuses on a single 
 | [output_parsers.py](output_parsers.py) | `StrOutputParser` + a multi-step translate-then-summarize pipeline | [StrOutputParser](https://reference.langchain.com/python/langchain-core/output_parsers/StrOutputParser) |
 | [summarize.py](summarize.py) | Summarization, `"stuff"` strategy: all chunks in one prompt (also notes the `"map_reduce"` option) | [Summarization chains](https://reference.langchain.com/python/integrations/langchain_classic/chains/summarize) |
 | [summarize_map_reduce.py](summarize_map_reduce.py) | `"map_reduce"` strategy built by hand with LCEL: summarize chunks, then combine | [Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) |
+| [agent_tools.py](agent_tools.py) | ReAct agent (legacy API) that picks between a calculator and a mock search tool | [Agents](https://docs.langchain.com/oss/python/langchain/agents) · [Tools](https://docs.langchain.com/oss/python/langchain/tools) |
 
 ## Reference
 
