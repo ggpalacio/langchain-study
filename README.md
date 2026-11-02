@@ -35,7 +35,7 @@ Each script is runnable on its own (`python <file>.py`) and focuses on a single 
 | [summarize.py](summarize.py) | Summarization, `"stuff"` strategy: all chunks in one prompt (also notes the `"map_reduce"` option) | [Summarization chains](https://reference.langchain.com/python/integrations/langchain_classic/chains/summarize) |
 | [summarize_map_reduce.py](summarize_map_reduce.py) | `"map_reduce"` strategy built by hand with LCEL: summarize chunks, then combine | [Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) |
 | [agent_tools.py](agent_tools.py) | ReAct agent (legacy API) that picks between a calculator and a mock search tool | [Agents](https://docs.langchain.com/oss/python/langchain/agents) · [Tools](https://docs.langchain.com/oss/python/langchain/tools) |
-| [agent_tools_hub.py](agent_tools_hub.py) | Same agent, pulling its ReAct prompt from LangChain Hub instead of writing it by hand | [Hub prompt](https://smith.langchain.com/hub/hwchase17/react) |
+| [agent_tools_using_hub.py](agent_tools_using_hub.py) | Same agent, pulling its ReAct prompt from LangChain Hub instead of writing it by hand | [Hub prompt](https://smith.langchain.com/hub/hwchase17/react) |
 
 ## Reference
 

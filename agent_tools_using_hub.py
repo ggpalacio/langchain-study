@@ -77,9 +77,10 @@ prompt_template = client.pull_prompt(
 
 # create_react_agent wires the model, tools and prompt into a Runnable
 # that produces one ReAct step (Thought/Action/Action Input) per call.
-# stop_sequence=False skips the default "\nObservation" stop sequence,
-# letting the model generate freely instead of being cut off there.
-agent_chain = create_react_agent(model, tools, prompt_template, stop_sequence=False)
+# Unlike agent_tools.py, this keeps the default stop_sequence=True, so
+# generation stops as soon as the model writes "\nObservation" instead
+# of continuing on to hallucinate one itself.
+agent_chain = create_react_agent(model, tools, prompt_template)
 
 # AgentExecutor is what actually RUNS the loop: call the agent, parse
 # its output, execute the requested tool, feed the Observation back in
