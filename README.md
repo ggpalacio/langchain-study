@@ -37,6 +37,7 @@ Each script is runnable on its own (`python <file>.py`) and focuses on a single 
 | [agent_tools.py](agent_tools.py) | ReAct agent (legacy API) that picks between a calculator and a mock search tool | [Agents](https://docs.langchain.com/oss/python/langchain/agents) · [Tools](https://docs.langchain.com/oss/python/langchain/tools) |
 | [agent_tools_using_hub.py](agent_tools_using_hub.py) | Same agent, pulling its ReAct prompt from LangChain Hub instead of writing it by hand | [Hub prompt](https://smith.langchain.com/hub/hwchase17/react) |
 | [memory_history.py](memory_history.py) | `RunnableWithMessageHistory`: per-session chat memory across turns | [Short-term memory](https://docs.langchain.com/oss/python/langchain/short-term-memory) |
+| [sliding_window_history.py](sliding_window_history.py) | Same idea, bounded with `trim_messages`: only the most recent turns reach the prompt | [trim_messages](https://reference.langchain.com/python/langchain-core/messages/trim_messages) |
 
 ## Reference
 
