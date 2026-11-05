@@ -1,0 +1,38 @@
+# Local Postgres + pgvector for the doc_loader/ RAG examples: a vector store
+# to hold embedded document chunks (see PGVECTOR_URL / PGVECTOR_COLLECTION
+# in .env.example). Start with `docker compose up -d`.
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: pgvector
+    environment:
+      POSTGRES_DB: rag
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rag"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Runs once after postgres is healthy to enable the "vector" extension
+  # (pgvector's similarity-search column type) on the "rag" database.
+  bootstrap_vector_extension:
+    image: pgvector/pgvector:pg17
+    depends_on:
+      postgres:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      PGPASSWORD=postgres
+      psql "postgresql://postgres@postgres:5432/rag" -v ON_ERROR_STOP=1
+      -c "CREATE EXTENSION IF NOT EXISTS vector;"
+    restart: "no"
+
+volumes:
+  postgres_data:

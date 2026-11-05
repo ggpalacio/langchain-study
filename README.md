@@ -18,6 +18,11 @@ Copy `.env.example` to `.env` and fill in your Anthropic API key:
 cp .env.example .env
 ```
 
+The `doc_loader/` examples below load and split documents only - they don't
+need a vector store yet. `docker-compose.yaml` spins up a Postgres +
+pgvector instance (`docker compose up -d`) for upcoming retrieval examples
+that embed and store those chunks.
+
 ## Examples
 
 Each script is runnable on its own (`python <file>.py`) and focuses on a single LangChain concept:
@@ -38,6 +43,8 @@ Each script is runnable on its own (`python <file>.py`) and focuses on a single 
 | [agent_tools_using_hub.py](agents/agent_tools_using_hub.py) | Same agent, pulling its ReAct prompt from LangChain Hub instead of writing it by hand | [Hub prompt](https://smith.langchain.com/hub/hwchase17/react) |
 | [memory_history.py](history/memory_history.py) | `RunnableWithMessageHistory`: per-session chat memory across turns | [Short-term memory](https://docs.langchain.com/oss/python/langchain/short-term-memory) |
 | [sliding_window_history.py](history/sliding_window_history.py) | Same idea, bounded with `trim_messages`: only the most recent turns reach the prompt | [trim_messages](https://reference.langchain.com/python/langchain-core/messages/trim_messages) |
+| [pdf_loader.py](doc_loader/pdf_loader.py) | `PyPDFLoader` + `RecursiveCharacterTextSplitter`: load a local PDF and split it into overlapping chunks | [Document loaders](https://docs.langchain.com/oss/python/langchain/retrieval#document-loaders) |
+| [web_base_loader.py](doc_loader/web_base_loader.py) | Same splitting pattern, loading a web page with `WebBaseLoader` instead of a file | [WebBaseLoader](https://reference.langchain.com/python/integrations/langchain_community/document_loaders/WebBaseLoader) |
 
 ## Reference
 
