@@ -19,9 +19,12 @@ cp .env.example .env
 ```
 
 The `doc_loader/` examples below load and split documents only - they don't
-need a vector store yet. `docker-compose.yaml` spins up a Postgres +
-pgvector instance (`docker compose up -d`) for upcoming retrieval examples
-that embed and store those chunks.
+need a vector store. `rag/store.py` and `rag/search.py` do: start it with
+`docker compose up -d` (Postgres + pgvector) before running either of
+them, and fill in `PGVECTOR_URL` and `PGVECTOR_COLLECTION` in `.env`. The
+embedding model they use (`HuggingFaceEmbeddings`) runs locally - no API
+key needed for that part, `HF_TOKEN` is only for Hugging Face models/datasets
+that require authentication.
 
 ## Examples
 
@@ -45,6 +48,8 @@ Each script is runnable on its own (`python <file>.py`) and focuses on a single 
 | [sliding_window_history.py](history/sliding_window_history.py) | Same idea, bounded with `trim_messages`: only the most recent turns reach the prompt | [trim_messages](https://reference.langchain.com/python/langchain-core/messages/trim_messages) |
 | [pdf_loader.py](doc_loader/pdf_loader.py) | `PyPDFLoader` + `RecursiveCharacterTextSplitter`: load a local PDF and split it into overlapping chunks | [Document loaders](https://docs.langchain.com/oss/python/langchain/retrieval#document-loaders) |
 | [web_base_loader.py](doc_loader/web_base_loader.py) | Same splitting pattern, loading a web page with `WebBaseLoader` instead of a file | [WebBaseLoader](https://reference.langchain.com/python/integrations/langchain_community/document_loaders/WebBaseLoader) |
+| [store.py](rag/store.py) | RAG, step 1: embed a PDF's chunks (local `HuggingFaceEmbeddings`) and store them in pgvector | [Vector stores](https://docs.langchain.com/oss/python/langchain/retrieval#vector-stores) |
+| [search.py](rag/search.py) | RAG, step 2: similarity search over that pgvector collection, scored by distance | [PGVector](https://reference.langchain.com/python/integrations/langchain_postgres/vectorstores/PGVector) |
 
 ## Reference
 
